@@ -1,0 +1,78 @@
+html, body, #mount, #mount > div {
+  height: 100%;
+}
+
+body {
+  background: #111;
+  font: 16px/1.5em Arial;
+  color: #eee;
+  margin: 0;
+}
+
+a {
+  color: #ddd;
+}
+
+#nav {
+  grid-area: nav;
+  background: #191919;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#aside {
+  grid-area: aside;
+  padding: 10px;
+}
+
+#main {
+  padding: 10px;
+  grid-area: main;
+}
+
+#app {
+  height: 100%;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 70px auto;
+  grid-template-areas:
+          "nav nav"
+          "aside main";
+}
+
+#song {
+  > ol {
+    list-style: none;
+    padding: 0;
+
+    > li {
+      border-bottom: 1px solid #333;
+      padding: 10px 0;
+      white-space: pre-line;
+      font-size: 20px;
+      line-height: 1.5em;
+
+      &:hover {
+        cursor: pointer;
+        background: #191919;
+      }
+    }
+  }
+}
+
+#output {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  #content {
+    font-size: 4vw;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    white-space: pre-line;
+    text-align: center;
+  }
+}

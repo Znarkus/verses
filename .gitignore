@@ -1,0 +1,24 @@
+.DS_Store
+*.patch
+node_modules
+*.log
+*.log.*
+**/logs/*
+.env
+.idea/
+tmp/
+.vscode/
+.tern-project
+UnicodeData.txt
+.tern-port
+dist/
+.cache/
+
+# ignore terminal hack for vim in macOS Sierra
+xterm-256color.ti
+
+# dont include ctags
+tags
+.tags
+.ctags
+ctags
