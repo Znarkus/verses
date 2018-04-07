@@ -1,7 +1,7 @@
 'use strict'
 
-import React, { Component, Fragment } from 'react'
-import ReactDOM from 'react-dom'
+import React, { Fragment } from 'react'
+import { render } from 'react-dom'
 import {
   BrowserRouter as Router,
   Route
@@ -11,7 +11,7 @@ import Output from './views/Output'
 import App from './views/App'
 
 
-ReactDOM.render(
+render(
   <Router>
     <Fragment>
       <Route exact path="/" component={App}/>

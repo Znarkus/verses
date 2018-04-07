@@ -1,5 +1,7 @@
 html, body, #mount, #mount > div {
   height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -26,11 +28,6 @@ a {
   padding: 10px;
 }
 
-#main {
-  padding: 10px;
-  grid-area: main;
-}
-
 #app {
   height: 100%;
   display: grid;
@@ -43,6 +40,9 @@ a {
 }
 
 #main {
+  padding: 10px;
+  grid-area: main;
+
   > ol {
     list-style: none;
     padding: 0;
