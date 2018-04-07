@@ -3,7 +3,10 @@ import openSocket from 'socket.io-client'
 
 const socket = openSocket('/output')
 
-class Output extends React.Component {
+class Output extends Component {
+
+  state = { item: null }
+
   componentDidMount () {
     socket.on('output', ({ item }) => {
       this.setState({ item })
@@ -11,11 +14,12 @@ class Output extends React.Component {
   }
 
   render () {
+    const { item } = this.state
     return (
       <div id="output">
-        {this.state && this.state.item &&
+        {item &&
           <main id="content">
-            {this.state.item.content}
+            {item.content}
           </main>
         }
       </div>
