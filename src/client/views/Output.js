@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import openSocket from 'socket.io-client'
+import $ from 'jquery'
 
 const socket = openSocket('/output')
 
@@ -8,9 +9,15 @@ class Output extends Component {
   state = { item: null }
 
   componentDidMount () {
+    $('body').addClass('output')
+
     socket.on('output', ({ item }) => {
       this.setState({ item })
     })
+  }
+
+  componentWillUnmount () {
+    $('body').removeClass('output')
   }
 
   render () {

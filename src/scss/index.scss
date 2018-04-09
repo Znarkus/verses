@@ -1,6 +1,6 @@
 @import 'colors';
 
-html, body, #mount, #mount > div {
+html, body, #mount {
   height: 100%;
   max-width: 100%;
   overflow-x: hidden;
@@ -11,6 +11,10 @@ body {
   font: 16px/1.5em Arial;
   color: #eee;
   margin: 0;
+
+  &.output {
+    background: transparent;
+  }
 }
 
 a {
@@ -88,5 +92,17 @@ a {
     text-transform: uppercase;
     white-space: pre-line;
     text-align: center;
+    min-width: 85vw;
+    height: 30vh;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.fade-to-black {
+      opacity: 0;
+      transition: opacity 1s
+    }
   }
 }
