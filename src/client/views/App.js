@@ -15,7 +15,7 @@ class App extends Component {
 
   componentDidMount () {
     socket.on('load', ({ song }) => {
-      this.setState({ song })
+      this.setState({ song, currentSlide: null })
     })
 
     document.addEventListener('keydown', (e) => {
@@ -49,8 +49,8 @@ class App extends Component {
     const { song, currentSlide } = this.state
 
     if (!currentSlide) {
-      socket.emit('showItem', { item: song.items[0] })
-      this.setState({ currentSlide: song.items[0].id })
+      // if we haven't started yet, here we could do some smooth animation
+      this.outputItem(song.items[0])
       return
     }
 
@@ -63,8 +63,7 @@ class App extends Component {
       nextSlide = song.items[0]
     }
 
-    socket.emit('showItem', { item: nextSlide })
-    this.setState({ currentSlide: nextSlide.id })
+    this.outputItem(nextSlide)
   }
 
   goPrevSlide = () => {
@@ -80,8 +79,7 @@ class App extends Component {
       return
     }
 
-    socket.emit('showItem', { item: prevSlide })
-    this.setState({ currentSlide: prevSlide.id })
+    this.outputItem(prevSlide)
   }
 
   outputItem = (item) => {

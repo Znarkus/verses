@@ -1,14 +1,14 @@
 import React from 'react'
 
 const Item = ({ item, outputItem, currentSlide }) => {
-  const activeBackground = {
+  const style = {
     backgroundColor: currentSlide === item.id && 'grey'
   }
 
   return (
     <li
       onClick={() => outputItem(item)}
-      style={activeBackground}>
+      className={currentSlide === item.id ? 'active' : undefined}>
       {item.content}
     </li>
   )

@@ -1,3 +1,5 @@
+@import 'colors';
+
 html, body, #mount, #mount > div {
   height: 100%;
   max-width: 100%;
@@ -17,7 +19,7 @@ a {
 
 #nav {
   grid-area: nav;
-  background: #191919;
+  background: $dark-grey;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -53,10 +55,22 @@ a {
       white-space: pre-line;
       font-size: 20px;
       line-height: 1.5em;
+      position: relative;
 
       &:hover {
         cursor: pointer;
-        background: #191919;
+        background: $dark-grey;
+      }
+
+      &.active {
+        background: $dark-grey;
+
+        &:before {
+          content: '➔';
+          position: absolute;
+          color: #fff;
+          left: -30px;
+        }
       }
     }
   }
