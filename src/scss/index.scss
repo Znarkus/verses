@@ -1,5 +1,9 @@
+@import 'colors';
+
 html, body, #mount, #mount > div {
   height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -15,7 +19,7 @@ a {
 
 #nav {
   grid-area: nav;
-  background: #191919;
+  background: $dark-grey;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -24,11 +28,6 @@ a {
 #aside {
   grid-area: aside;
   padding: 10px;
-}
-
-#main {
-  padding: 10px;
-  grid-area: main;
 }
 
 #app {
@@ -42,7 +41,10 @@ a {
           "aside main";
 }
 
-#song {
+#main {
+  padding: 10px;
+  grid-area: main;
+
   > ol {
     list-style: none;
     padding: 0;
@@ -53,10 +55,22 @@ a {
       white-space: pre-line;
       font-size: 20px;
       line-height: 1.5em;
+      position: relative;
 
       &:hover {
         cursor: pointer;
-        background: #191919;
+        background: $dark-grey;
+      }
+
+      &.active {
+        background: $dark-grey;
+
+        &:before {
+          content: '➔';
+          position: absolute;
+          color: #fff;
+          left: -30px;
+        }
       }
     }
   }
