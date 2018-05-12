@@ -1,10 +1,14 @@
 import React, { Fragment } from 'react'
 import Item from './Item'
+import Ftb from './Ftb'
 
-const Main = ({ song, ...rest }) => (
+const Main = ({ song, socket, ...rest }) => (
   <Fragment>
-    {song &&
-      <main id="main">
+    <main id="main">
+      <Ftb socket={socket} />
+
+      {song &&
+        <section className="content">
         <h2>{song.title}</h2>
         <ol>
           {song.items.map(item =>
@@ -14,8 +18,9 @@ const Main = ({ song, ...rest }) => (
             {...rest} />
           )}
         </ol>
-      </main>
-    }
+        </section>
+      }
+    </main>
   </Fragment>
 )
 

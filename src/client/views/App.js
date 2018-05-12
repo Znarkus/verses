@@ -18,31 +18,32 @@ class App extends Component {
       this.setState({ song, currentSlide: null })
     })
 
-    document.addEventListener('keydown', (e) => {
-      switch (e.key) {
-        case ' ':
-          this.goNextSlide()
-          break
-        case 'ArrowRight':
-          this.goNextSlide()
-          break
-        case 'ArrowDown':
-          this.goNextSlide()
-          break
-        case 'ArrowLeft':
-          this.goPrevSlide()
-          break
-        case 'ArrowUp':
-          this.goPrevSlide()
-          break
-        default: false
-
-      }
-    })
+    document.addEventListener('keydown', this.keyDownListener)
   }
 
-  componentWillMount () {
+  keyDownListener = (e) => {
+    switch (e.key) {
+      case ' ':
+        this.goNextSlide()
+        break
+      case 'ArrowRight':
+        this.goNextSlide()
+        break
+      case 'ArrowDown':
+        this.goNextSlide()
+        break
+      case 'ArrowLeft':
+        this.goPrevSlide()
+        break
+      case 'ArrowUp':
+        this.goPrevSlide()
+        break
+    }
+  }
+
+  componentWillUnmount () {
     socket.removeAllListeners('load')
+    document.removeEventListener('keydown', this.keyDownListener)
   }
 
   goNextSlide = () => {
@@ -100,7 +101,9 @@ class App extends Component {
         <Main
           song={song}
           currentSlide={currentSlide}
-          outputItem={this.outputItem} />
+          outputItem={this.outputItem}
+          socket={socket}
+        />
       </div>
     )
   }

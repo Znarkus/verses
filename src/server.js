@@ -71,6 +71,10 @@ function started () {
       currentItem = item
       wssOutput.emit('output', { item: currentItem })
     })
+
+    socket.on('ftb', () => {
+      wssOutput.emit('ftb')
+    })
   })
 
   wssOutput.on('connection', (socket) => {

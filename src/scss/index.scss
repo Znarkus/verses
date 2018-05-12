@@ -49,7 +49,7 @@ a {
   padding: 10px;
   grid-area: main;
 
-  > ol {
+  .content ol {
     list-style: none;
     padding: 0;
 
@@ -100,7 +100,7 @@ a {
     align-items: center;
     justify-content: center;
 
-    &.fade-to-black {
+    &.ftb {
       opacity: 0;
       transition: opacity 1s
     }

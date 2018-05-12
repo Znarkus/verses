@@ -14,6 +14,12 @@ class Output extends Component {
     socket.on('output', ({ item }) => {
       this.setState({ item })
     })
+
+    socket.on('ftb', () => {
+      this.setState(prevState => ({
+        ftb: !prevState.ftb
+      }))
+    })
   }
 
   componentWillUnmount () {
@@ -21,11 +27,14 @@ class Output extends Component {
   }
 
   render () {
-    const { item } = this.state
+    if (!this.state) return
+
+    const { item, ftb } = this.state
+
     return (
       <div id="output">
         {item &&
-          <main id="content">
+          <main id="content" className={`${ftb ? 'ftb' : ''}`}>
             {item.content}
           </main>
         }
