@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Runsheet from '../components/Runsheet'
 import Main from '../components/Main'
 import openSocket from 'socket.io-client'
+import $ from 'jquery'
 
 const socket = openSocket()
 
@@ -14,6 +15,8 @@ class App extends Component {
   }
 
   componentDidMount () {
+    $('body').addClass('app')
+
     socket.on('load', ({ song }) => {
       this.setState({ song, currentSlide: null })
     })
@@ -93,7 +96,6 @@ class App extends Component {
     return (
       <div id="app">
         <nav id="nav">
-          <Link to="/output">Output</Link>
         </nav>
         <aside id="aside">
           <Runsheet/>
@@ -104,6 +106,12 @@ class App extends Component {
           outputItem={this.outputItem}
           socket={socket}
         />
+        <aside id="output">
+          <Link to="/output">Output</Link>
+          <div className="iframe-wrap">
+            <iframe src="/output"></iframe>
+          </div>
+        </aside>
       </div>
     )
   }
