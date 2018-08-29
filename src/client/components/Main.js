@@ -1,27 +1,36 @@
-import React, { Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import Item from './Item'
-import Ftb from './Ftb'
 
-const Main = ({ song, socket, ...rest }) => (
-  <Fragment>
-    <main id="main">
-      <Ftb socket={socket} />
+class Main extends Component {
+  ftb = () => {
+    this.props.socket.emit('ftb')
+  }
 
-      {song &&
+  render () {
+    const { song, ...rest } = this.props
+
+    return <Fragment>
+      <main id="main">
+        <div onClick={this.ftb}>
+          Fade to black
+        </div>
+
+        {song &&
         <section className="content">
-        <h2>{song.title}</h2>
-        <ol>
-          {song.items.map(item =>
-            <Item
-            item={item}
-            key={item.id}
-            {...rest} />
-          )}
-        </ol>
+          <h2>{song.title}</h2>
+          <ol>
+            {song.items.map(item =>
+              <Item
+                item={item}
+                key={item.id}
+                {...rest} />
+            )}
+          </ol>
         </section>
-      }
-    </main>
-  </Fragment>
+        }
+      </main>
+    </Fragment>
+  }
 )
 
 export default Main
