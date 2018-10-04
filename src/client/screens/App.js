@@ -1,7 +1,9 @@
+'use strict'
+
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Runsheet from '../components/Runsheet'
-import Main from '../components/Main'
+import Runsheet from './Runsheet'
+import Deck from '../components/Deck'
 import openSocket from 'socket.io-client'
 import $ from 'jquery'
 
@@ -100,12 +102,14 @@ class App extends Component {
         <aside id="aside">
           <Runsheet/>
         </aside>
-        <Main
-          song={song}
-          currentSlide={currentSlide}
-          outputItem={this.outputItem}
-          socket={socket}
-        />
+        <main id="main">
+          <Deck
+            song={song}
+            currentSlide={currentSlide}
+            outputItem={this.outputItem}
+            socket={socket}
+          />
+        </main>
         <aside id="output">
           <Link to="/output">Output</Link>
           <div className="iframe-wrap">

@@ -1,16 +1,17 @@
+'use strict'
+
 import React, { Component, Fragment } from 'react'
 import Item from './Item'
 
-class Main extends Component {
+class Deck extends Component {
   ftb = () => {
     this.props.socket.emit('ftb')
   }
 
-  render () {
+  render() {
     const { song, ...rest } = this.props
 
     return <Fragment>
-      <main id="main">
         <div onClick={this.ftb}>
           Fade to black
         </div>
@@ -28,9 +29,8 @@ class Main extends Component {
           </ol>
         </section>
         }
-      </main>
     </Fragment>
   }
-)
+}
 
-export default Main
+export default Deck

@@ -7,8 +7,8 @@ import {
   Route
 } from 'react-router-dom'
 
-import Output from './views/Output'
-import App from './views/App'
+import Output from './screens/Output'
+import App from './screens/App'
 
 render(
   <Router>
