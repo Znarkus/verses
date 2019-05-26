@@ -28,11 +28,16 @@ const song = {
     {
       id: 5,
       group: 'pre-chorus',
-      content: 'Lord I know my heart wants more of You\n' +
-      'My heart wants something new'
+      content: 'Lord I know my heart\n' +
+      'wants more of You'
     },
     {
       id: 6,
+      group: 'pre-chorus',
+      content: 'My heart wants\nsomething new'
+    },
+    {
+      id: 7,
       group: 'pre-chorus',
       content: 'So I surrender all'
     },
@@ -65,6 +70,10 @@ function started () {
     socket.on('showItem', ({ item }) => {
       currentItem = item
       wssOutput.emit('output', { item: currentItem })
+    })
+
+    socket.on('ftb', () => {
+      wssOutput.emit('ftb')
     })
   })
 

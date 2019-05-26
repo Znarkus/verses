@@ -1,8 +1,11 @@
+'use strict'
+
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Runsheet from '../components/Runsheet'
-import Main from '../components/Main'
+import Runsheet from './Runsheet'
+import Deck from '../components/Deck'
 import openSocket from 'socket.io-client'
+import $ from 'jquery'
 
 const socket = openSocket()
 
@@ -14,35 +17,38 @@ class App extends Component {
   }
 
   componentDidMount () {
+    $('body').addClass('app')
+
     socket.on('load', ({ song }) => {
       this.setState({ song, currentSlide: null })
     })
 
-    document.addEventListener('keydown', (e) => {
-      switch (e.key) {
-        case ' ':
-          this.goNextSlide()
-          break
-        case 'ArrowRight':
-          this.goNextSlide()
-          break
-        case 'ArrowDown':
-          this.goNextSlide()
-          break
-        case 'ArrowLeft':
-          this.goPrevSlide()
-          break
-        case 'ArrowUp':
-          this.goPrevSlide()
-          break
-        default: false
-
-      }
-    })
+    document.addEventListener('keydown', this.keyDownListener)
   }
 
-  componentWillMount () {
+  keyDownListener = (e) => {
+    switch (e.key) {
+      case ' ':
+        this.goNextSlide()
+        break
+      case 'ArrowRight':
+        this.goNextSlide()
+        break
+      case 'ArrowDown':
+        this.goNextSlide()
+        break
+      case 'ArrowLeft':
+        this.goPrevSlide()
+        break
+      case 'ArrowUp':
+        this.goPrevSlide()
+        break
+    }
+  }
+
+  componentWillUnmount () {
     socket.removeAllListeners('load')
+    document.removeEventListener('keydown', this.keyDownListener)
   }
 
   goNextSlide = () => {
@@ -92,15 +98,24 @@ class App extends Component {
     return (
       <div id="app">
         <nav id="nav">
-          <Link to="/output">Output</Link>
         </nav>
         <aside id="aside">
           <Runsheet/>
         </aside>
-        <Main
-          song={song}
-          currentSlide={currentSlide}
-          outputItem={this.outputItem} />
+        <main id="main">
+          <Deck
+            song={song}
+            currentSlide={currentSlide}
+            outputItem={this.outputItem}
+            socket={socket}
+          />
+        </main>
+        <aside id="output">
+          <Link to="/output">Output</Link>
+          <div className="iframe-wrap">
+            <iframe src="/output"></iframe>
+          </div>
+        </aside>
       </div>
     )
   }
